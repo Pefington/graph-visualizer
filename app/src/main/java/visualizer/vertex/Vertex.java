@@ -3,28 +3,35 @@ package visualizer.vertex;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.GridBagLayout;
+import java.awt.RenderingHints;
 import javax.swing.JPanel;
 import visualizer.Constants;
 
-public class VertexPanel extends JPanel {
+public class Vertex extends JPanel {
     private final int DIAMETER = Constants.VERTEX_CIRCLE_DIAMETER;
+    private String id;
 
-    public VertexPanel(String id, int xPos, int yPos) {
-        this.setName("Vertex " + id);
+    public Vertex(String id, int xPos, int yPos) {
+        this.id = id;
+        this.setName("Vertex " + this.id);
         this.setPreferredSize(new Dimension(DIAMETER, DIAMETER));
         this.setOpaque(false);
-        this.setBounds(xPos, yPos, DIAMETER, DIAMETER);
+        this.setBounds(xPos - DIAMETER / 2, yPos - DIAMETER / 2, DIAMETER, DIAMETER);
         this.setLayout(new GridBagLayout());
 
-        VertexLabel vertexLabel = new VertexLabel(id);
+        VertexLabel vertexLabel = new VertexLabel(this.id);
         this.add(vertexLabel);
     }
 
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
+
+        Graphics2D g2d = (Graphics2D) g;
         g.setColor(Color.WHITE);
-        g.fillOval(0, 0, DIAMETER, DIAMETER);
+        g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+        g2d.fillOval(0, 0, DIAMETER, DIAMETER);
     }
 }
