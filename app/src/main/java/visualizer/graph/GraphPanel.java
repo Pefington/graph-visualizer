@@ -1,15 +1,11 @@
 package visualizer.graph;
 
-import java.awt.Color;
-import java.awt.Container;
-import java.awt.Dimension;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+import java.awt.*;
+import java.awt.event.*;
 import javax.swing.JPanel;
 import visualizer.errorHandling.CustomException;
 import visualizer.input.UserInputHandler;
-import visualizer.vertex.Vertex;
-import visualizer.vertex.VertexManager;
+import visualizer.vertex.*;
 
 public class GraphPanel extends JPanel {
     private VertexManager vertexManager = new VertexManager();
@@ -20,9 +16,6 @@ public class GraphPanel extends JPanel {
         this.setLayout(null);
         this.setPreferredSize(graphSize);
 
-        Instructions instructions = new Instructions(graphSize);
-        // this.add(instructions);
-
         final Container graph = this;
 
         MouseAdapter adapter = new MouseAdapter() {
@@ -32,7 +25,6 @@ public class GraphPanel extends JPanel {
                     String id =
                             UserInputHandler.promptForId(graph, vertexManager.getVerticesList());
                     if (id != null) {
-                        graph.remove(instructions);
                         graph.add(new Vertex(id.toUpperCase(), e.getX(), e.getY()));
                         graph.revalidate();
                         graph.repaint();

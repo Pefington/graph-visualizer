@@ -1,7 +1,6 @@
 package visualizer.vertex;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 public class VertexManager {
 

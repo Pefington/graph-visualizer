@@ -1,7 +1,6 @@
 package visualizer;
 
-import java.awt.Dimension;
-import java.awt.GridBagLayout;
+import java.awt.*;
 import javax.swing.JFrame;
 import visualizer.graph.GraphPanel;
 

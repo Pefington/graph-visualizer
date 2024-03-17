@@ -14,12 +14,8 @@ public class UserInputHandler {
         int invalidCounter = 0;
 
         while (true) {
-            input = JOptionPane.showInputDialog(parent, "Vertex ID (single character):",
-                    "Vertex", JOptionPane.DEFAULT_OPTION);
-
-            if (invalidCounter >= 3) {
-                // throw new CustomException("Please pay attention.\nClosing program.");
-            }
+            input = JOptionPane.showInputDialog(parent, "Vertex ID (single character):", "Vertex",
+                    JOptionPane.DEFAULT_OPTION);
 
             if (input == null) {
                 return null;
@@ -31,7 +27,6 @@ public class UserInputHandler {
                     : "ID must be a single character.";
 
             if (input.isBlank() || input.length() > 1 || verticesList.contains(input)) {
-                // JOptionPane.showMessageDialog(parent, message);
                 invalidCounter++;
                 continue;
             }
