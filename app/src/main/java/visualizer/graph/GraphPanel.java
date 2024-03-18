@@ -4,7 +4,7 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.JPanel;
 import visualizer.errorHandling.CustomException;
-import visualizer.input.UserInputHandler;
+import visualizer.input.VertexInputHandler;
 import visualizer.vertex.*;
 
 public class GraphPanel extends JPanel {
@@ -24,7 +24,7 @@ public class GraphPanel extends JPanel {
                 try {
                     Point point = e.getPoint();
                     String id =
-                            UserInputHandler.promptForId(graph, vertexManager.getVerticesList());
+                            VertexInputHandler.promptForId(graph, vertexManager.getVerticesList());
                     if (id != null) {
                         graph.add(new Vertex(id, point));
                         graph.revalidate();

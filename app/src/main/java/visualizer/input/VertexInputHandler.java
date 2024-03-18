@@ -5,13 +5,12 @@ import java.util.Set;
 import javax.swing.JOptionPane;
 import visualizer.errorHandling.CustomException;
 
-public class UserInputHandler {
+public class VertexInputHandler {
 
     public static String promptForId(Component parent, Set<String> verticesList)
             throws CustomException {
 
         String input;
-        int invalidCounter = 0;
 
         while (true) {
             input = JOptionPane.showInputDialog(parent, "Vertex ID (single character):", "Vertex",
@@ -23,11 +22,7 @@ public class UserInputHandler {
 
             input = input.toUpperCase();
 
-            String message = verticesList.contains(input) ? "ID must be unique."
-                    : "ID must be a single character.";
-
             if (input.isBlank() || input.length() > 1 || verticesList.contains(input)) {
-                invalidCounter++;
                 continue;
             }
 
@@ -36,7 +31,6 @@ public class UserInputHandler {
             if (input.length() == 1 && !verticesList.contains(input)
                     && (Character.isLetter(c) || Character.isDigit(c))) {
                 verticesList.add(input);
-                invalidCounter = 0;
                 return input;
             }
         }
