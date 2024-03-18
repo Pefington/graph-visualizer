@@ -22,10 +22,11 @@ public class GraphPanel extends JPanel {
             @Override
             public void mouseClicked(MouseEvent e) {
                 try {
+                    Point point = e.getPoint();
                     String id =
                             UserInputHandler.promptForId(graph, vertexManager.getVerticesList());
                     if (id != null) {
-                        graph.add(new Vertex(id.toUpperCase(), e.getX(), e.getY()));
+                        graph.add(new Vertex(id, point));
                         graph.revalidate();
                         graph.repaint();
                     }

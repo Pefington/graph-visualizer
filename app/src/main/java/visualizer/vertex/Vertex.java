@@ -7,13 +7,19 @@ import visualizer.Constants;
 public class Vertex extends JPanel {
     private final int DIAMETER = Constants.VERTEX_CIRCLE_DIAMETER;
     private String id;
+    private int xPosition;
+    private int yPosition;
 
-    public Vertex(String id, int xPos, int yPos) {
+    public Vertex(String id, Point position) {
         this.id = id;
+        this.xPosition = (int) position.getX();
+        this.yPosition = (int) position.getY();
         this.setName("Vertex " + this.id);
         this.setPreferredSize(new Dimension(DIAMETER, DIAMETER));
         this.setOpaque(false);
-        this.setBounds(xPos - DIAMETER / 2, yPos - DIAMETER / 2, DIAMETER, DIAMETER);
+        int left = this.xPosition - DIAMETER / 2;
+        int top = this.yPosition - DIAMETER / 2;
+        this.setBounds(left, top, DIAMETER, DIAMETER);
         this.setLayout(new GridBagLayout());
 
         VertexLabel vertexLabel = new VertexLabel(this.id);
