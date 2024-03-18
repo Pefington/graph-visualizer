@@ -26,6 +26,10 @@ public class Vertex extends JPanel {
         this.add(vertexLabel);
     }
 
+    public String getId() {
+        return id;
+    }
+
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
