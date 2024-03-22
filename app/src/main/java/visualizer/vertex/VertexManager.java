@@ -1,20 +1,20 @@
 package visualizer.vertex;
 
+import java.awt.*;
 import java.util.*;
 
-public class VertexManager {
+public class VertexManager extends Component {
+    private Map<String, Vertex> vertices = new HashMap<>();
 
-    private Set<String> verticesList = new HashSet<>();
-
-    public void addVertex(String id) {
-        verticesList.add(id);
+    public void createVertex(String id, Point position) {
+        vertices.put(id, new Vertex(id, position));
     }
 
     public boolean vertexExists(String id) {
-        return verticesList.contains(id);
+        return vertices.containsKey(id);
     }
 
-    public Set<String> getVerticesList() {
-        return verticesList;
+    public Map<String, Vertex> getVertices() {
+        return vertices;
     }
 }

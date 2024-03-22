@@ -2,8 +2,8 @@ package visualizer.graph;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.util.Map;
 import javax.swing.JPanel;
-import visualizer.errorHandling.CustomException;
 import visualizer.input.VertexInputHandler;
 import visualizer.vertex.*;
 
@@ -16,28 +16,29 @@ public class GraphPanel extends JPanel {
         this.setLayout(null);
         this.setPreferredSize(graphSize);
 
-        final Container graph = this;
+        final GraphPanel graph = this;
 
         MouseAdapter adapter = new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                try {
-                    Point point = e.getPoint();
-                    String id =
-                            VertexInputHandler.promptForId(graph, vertexManager.getVerticesList());
-                    if (id != null) {
-                        graph.add(new Vertex(id, point));
-                        graph.revalidate();
-                        graph.repaint();
-                    }
-                } catch (CustomException exception) {
-                    System.err.println(exception.getMessage());
-                    System.exit(1);
+                Point point = e.getPoint();
+                String id = VertexInputHandler.promptForId(graph);
+                if (id != null) {
+                    graph.add(new Vertex(id, point));
+                    graph.revalidate();
+                    graph.repaint();
                 }
             }
         };
-
         this.addMouseListener(adapter);
+    }
+
+    public Map<String, Vertex> getVertices() {
+        return vertexManager.getVertices();
+    }
+
+    public VertexManager getVertexManager() {
+        return vertexManager;
     }
 
 }

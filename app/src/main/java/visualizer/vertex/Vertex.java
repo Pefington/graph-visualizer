@@ -5,29 +5,22 @@ import javax.swing.JPanel;
 import visualizer.Constants;
 
 public class Vertex extends JPanel {
-    private final int DIAMETER = Constants.VERTEX_CIRCLE_DIAMETER;
-    private String id;
-    private int xPosition;
-    private int yPosition;
+    private final int DIAMETRE = Constants.VERTEX_CIRCLE_DIAMETRE;
+    private final int RADIUS = DIAMETRE / 2;
 
     public Vertex(String id, Point position) {
-        this.id = id;
-        this.xPosition = (int) position.getX();
-        this.yPosition = (int) position.getY();
-        this.setName("Vertex " + this.id);
-        this.setPreferredSize(new Dimension(DIAMETER, DIAMETER));
+        final int xCentre = (int) position.getX();
+        final int yCentre = (int) position.getY();
+        final int left = xCentre - RADIUS;
+        final int top = yCentre - RADIUS;
+
+        this.setName("Vertex " + id);
         this.setOpaque(false);
-        int left = this.xPosition - DIAMETER / 2;
-        int top = this.yPosition - DIAMETER / 2;
-        this.setBounds(left, top, DIAMETER, DIAMETER);
+        this.setPreferredSize(new Dimension(DIAMETRE, DIAMETRE));
+        this.setBounds(left, top, DIAMETRE, DIAMETRE);
         this.setLayout(new GridBagLayout());
 
-        VertexLabel vertexLabel = new VertexLabel(this.id);
-        this.add(vertexLabel);
-    }
-
-    public String getId() {
-        return id;
+        this.add(new VertexLabel(id));
     }
 
     @Override
@@ -37,6 +30,6 @@ public class Vertex extends JPanel {
         Graphics2D g2d = (Graphics2D) g;
         g.setColor(Color.WHITE);
         g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-        g2d.fillOval(0, 0, DIAMETER, DIAMETER);
+        g2d.fillOval(0, 0, DIAMETRE, DIAMETRE);
     }
 }
