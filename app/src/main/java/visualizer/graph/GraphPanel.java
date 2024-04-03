@@ -23,8 +23,9 @@ public class GraphPanel extends JPanel {
             public void mouseClicked(MouseEvent e) {
                 Point point = e.getPoint();
                 String id = VertexInputHandler.promptForId(graph);
+
                 if (id != null) {
-                    graph.add(new Vertex(id, point));
+                    graph.createVertex(id, point);
                     graph.revalidate();
                     graph.repaint();
                 }
@@ -33,12 +34,20 @@ public class GraphPanel extends JPanel {
         this.addMouseListener(adapter);
     }
 
+    public Vertex getVertex(String id) {
+        return vertexManager.getVertex(id);
+    }
+
     public Map<String, Vertex> getVertices() {
         return vertexManager.getVertices();
     }
 
-    public VertexManager getVertexManager() {
-        return vertexManager;
+    public boolean alreadyHasVertex(String id) {
+        return vertexManager.alreadyHasVertex(id);
     }
 
+    public void createVertex(String id, Point position) {
+        vertexManager.createVertex(id, position);
+        this.add(vertexManager.getVertex(id));
+    }
 }

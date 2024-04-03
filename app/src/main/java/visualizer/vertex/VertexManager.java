@@ -10,11 +10,15 @@ public class VertexManager extends Component {
         vertices.put(id, new Vertex(id, position));
     }
 
-    public boolean vertexExists(String id) {
+    public boolean alreadyHasVertex(String id) {
         return vertices.containsKey(id);
     }
 
     public Map<String, Vertex> getVertices() {
         return vertices;
+    }
+
+    public Vertex getVertex(String id) {
+        return vertices.get(id);
     }
 }
